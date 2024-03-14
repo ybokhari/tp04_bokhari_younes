@@ -1,0 +1,43 @@
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()" class="card-form">
+    <div class="form-group">
+        <label for="cardName">Nom de la carte:</label>
+        <input type="text" formControlName="cardName" class="form-control">
+        <div *ngIf="cardForm.get('cardName')?.invalid && (cardForm.get('cardName')?.dirty || cardForm.get('cardName')?.touched)"
+            class="error-message">
+            <div *ngIf="cardForm.get('cardName')?.errors?.['required']">Nom de la carte est requis.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cardCode">Code de la carte:</label>
+        <input type="text" formControlName="cardCode" class="form-control">
+        <div *ngIf="cardForm.get('cardCode')?.invalid && (cardForm.get('cardCode')?.dirty || cardForm.get('cardCode')?.touched)"
+            class="error-message">
+            <div *ngIf="cardForm.get('cardCode')?.errors?.['required']">Code de la carte est requis.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ccv">Code de sécurité (CCV) :</label>
+        <input type="text" formControlName="ccv" appRedIfOverLimit class="form-control">
+        <div *ngIf="cardForm.get('ccv')?.invalid && (cardForm.get('ccv')?.dirty || cardForm.get('ccv')?.touched)"
+            class="error-message">
+            <div *ngIf="cardForm.get('ccv')?.errors?.['required']">Le code de sécurité est requis.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="expiryMonth">Mois d'expiration:</label>
+        <input type="text" formControlName="expiryMonth" class="form-control">
+        <div *ngIf="cardForm.get('expiryMonth')?.invalid && (cardForm.get('expiryMonth')?.dirty || cardForm.get('expiryMonth')?.touched)"
+            class="error-message">
+            <div *ngIf="cardForm.get('expiryMonth')?.errors?.['required']">Mois d'expiration est requis.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="expiryYear">Année d'expiration:</label>
+        <input type="text" formControlName="expiryYear" class="form-control">
+        <div *ngIf="cardForm.get('expiryYear')?.invalid && (cardForm.get('expiryYear')?.dirty || cardForm.get('expiryYear')?.touched)"
+            class="error-message">
+            <div *ngIf="cardForm.get('expiryYear')?.errors?.['required']">Année d'expiration est requise.</div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="cardForm.invalid" class="btn btn-primary">Ajouter</button>
+</form>
